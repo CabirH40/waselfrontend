@@ -21,7 +21,7 @@ const MealDetails = () => {
           className="mb-8 gap-2 font-bold text-muted-foreground hover:text-primary"
           onClick={() => navigate(-1)}
         >
-          <ArrowLeft className="w-5 h-5" /> Back to Menu
+          <ArrowLeft className="w-5 h-5" /> العودة للمنيو
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -37,49 +37,49 @@ const MealDetails = () => {
           {/* Details Section */}
           <div className="space-y-10">
             <div>
-              <h1 className="text-5xl font-black mb-6 tracking-tight">Double Cheeseburger</h1>
+              <h1 className="text-5xl font-black mb-6 tracking-tight">دبل تشيز برجر</h1>
               <p className="text-xl text-muted-foreground leading-relaxed font-medium">
-                Two juicy flame-grilled beef patties topped with melted American cheese, fresh lettuce, ripe tomatoes, onions, pickles, and our signature sauce on a toasted sesame seed bun.
+                قطعتين من اللحم البقري المشوي على اللهب، مغطاة بجبنة أمريكية ذائبة، خس طازج، طماطم، بصل، مخلل، وصلصتنا الخاصة في خبز بالسمسم المحمص.
               </p>
-              <div className="mt-8 text-4xl font-black text-primary">$12.99</div>
+              <div className="mt-8 text-4xl font-black text-primary">12.99 ر.س</div>
             </div>
 
             {/* Options: Size */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-black tracking-tight">Choose Size</h3>
+              <h3 className="text-2xl font-black tracking-tight">اختر الحجم</h3>
               <RadioGroup defaultValue="regular" className="grid grid-cols-1 gap-4">
                 <div className="flex items-center justify-between p-6 rounded-3xl border-2 border-gray-100 hover:border-primary/30 cursor-pointer transition-all bg-gray-50/50">
                   <div className="flex items-center gap-4">
                     <RadioGroupItem value="regular" id="regular" className="w-6 h-6" />
-                    <Label htmlFor="regular" className="font-black text-lg">Regular</Label>
+                    <Label htmlFor="regular" className="font-black text-lg">عادي</Label>
                   </div>
-                  <span className="text-sm font-bold text-muted-foreground">Included</span>
+                  <span className="text-sm font-bold text-muted-foreground">مشمول</span>
                 </div>
                 <div className="flex items-center justify-between p-6 rounded-3xl border-2 border-gray-100 hover:border-primary/30 cursor-pointer transition-all bg-gray-50/50">
                   <div className="flex items-center gap-4">
                     <RadioGroupItem value="large" id="large" className="w-6 h-6" />
-                    <Label htmlFor="large" className="font-black text-lg">Large</Label>
+                    <Label htmlFor="large" className="font-black text-lg">كبير</Label>
                   </div>
-                  <span className="text-sm font-bold text-primary">+$2.50</span>
+                  <span className="text-sm font-bold text-primary">+2.50 ر.س</span>
                 </div>
               </RadioGroup>
             </div>
 
             {/* Options: Extras */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-black tracking-tight">Add Extras</h3>
+              <h3 className="text-2xl font-black tracking-tight">إضافات اختيارية</h3>
               <div className="space-y-4">
                 {[
-                  { id: "extra-cheese", label: "Extra Cheese", price: 1.50 },
-                  { id: "bacon", label: "Crispy Bacon", price: 2.00 },
-                  { id: "egg", label: "Fried Egg", price: 1.00 },
+                  { id: "extra-cheese", label: "جبنة إضافية", price: 1.50 },
+                  { id: "bacon", label: "بيكون بقري مقرمش", price: 2.00 },
+                  { id: "egg", label: "بيض مقلي", price: 1.00 },
                 ].map((extra) => (
                   <div key={extra.id} className="flex items-center justify-between p-6 rounded-3xl border-2 border-gray-100 bg-gray-50/50">
                     <div className="flex items-center gap-4">
                       <Checkbox id={extra.id} className="w-6 h-6 rounded-lg" />
                       <Label htmlFor={extra.id} className="font-bold text-lg">{extra.label}</Label>
                     </div>
-                    <span className="text-sm font-bold text-primary">+${extra.price.toFixed(2)}</span>
+                    <span className="text-sm font-bold text-primary">+{extra.price.toFixed(2)} ر.س</span>
                   </div>
                 ))}
               </div>
@@ -111,7 +111,7 @@ const MealDetails = () => {
                 onClick={() => navigate("/checkout")}
               >
                 <ShoppingCart className="w-7 h-7" />
-                Add to Cart — ${(12.99 * quantity).toFixed(2)}
+                إضافة للسلة — {(12.99 * quantity).toFixed(2)} ر.س
               </Button>
             </div>
           </div>

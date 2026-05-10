@@ -1,14 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Bike, Utensils, Package, Phone, MessageSquare, MapPin, Navigation } from "lucide-react";
+import { Check, Bike, Utensils, Package, Phone, MessageSquare, MapPin, Navigation, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
 const steps = [
-  { id: 1, label: "Order Confirmed", icon: Check, status: "completed", time: "12:15 PM" },
-  { id: 2, label: "Preparing Food", icon: Utensils, status: "current", time: "12:25 PM" },
-  { id: 3, label: "On the Way", icon: Bike, status: "pending", time: "Expected 12:40 PM" },
-  { id: 4, label: "Delivered", icon: Package, status: "pending", time: "Expected 12:45 PM" },
+  { id: 1, label: "تم تأكيد الطلب", icon: Check, status: "completed", time: "12:15 م" },
+  { id: 2, label: "يتم تحضير الطعام", icon: Utensils, status: "current", time: "12:25 م" },
+  { id: 3, label: "في الطريق إليك", icon: Bike, status: "pending", time: "متوقع 12:40 م" },
+  { id: 4, label: "تم التوصيل", icon: Package, status: "pending", time: "متوقع 12:45 م" },
 ];
 
 const OrderTracking = () => {
@@ -21,16 +21,16 @@ const OrderTracking = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-3xl md:text-4xl font-black tracking-tight">Order #FD-9821</h1>
+                <h1 className="text-3xl md:text-4xl font-black tracking-tight">طلب #FD-9821</h1>
                 <span className="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-black animate-pulse">
-                  LIVE TRACKING
+                  تتبع مباشر
                 </span>
               </div>
-              <p className="text-muted-foreground font-medium">Estimated delivery: <span className="text-foreground font-black">12:45 PM</span></p>
+              <p className="text-muted-foreground font-medium">وقت التوصيل المتوقع: <span className="text-foreground font-black">12:45 م</span></p>
             </div>
             <div className="flex gap-3">
-              <Button variant="outline" className="rounded-2xl h-12 px-6 font-bold border-gray-200">Help Center</Button>
-              <Button className="btn-primary-gradient rounded-2xl h-12 px-6 font-bold">Cancel Order</Button>
+              <Button variant="outline" className="rounded-2xl h-12 px-6 font-bold border-gray-200">مركز المساعدة</Button>
+              <Button className="btn-primary-gradient rounded-2xl h-12 px-6 font-bold">إلغاء الطلب</Button>
             </div>
           </div>
 
@@ -71,7 +71,7 @@ const OrderTracking = () => {
                 </div>
 
                 <Button className="absolute bottom-8 right-8 rounded-2xl h-14 px-6 font-black gap-2 shadow-2xl">
-                  <Navigation className="w-5 h-5" /> Recenter Map
+                  <Navigation className="w-5 h-5" /> إعادة التمركز
                 </Button>
               </Card>
 
@@ -85,11 +85,11 @@ const OrderTracking = () => {
                     <div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white" />
                   </div>
                   <div>
-                    <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">Your Courier</p>
-                    <h3 className="font-black text-2xl">Ahmed K.</h3>
+                    <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">المندوب الخاص بك</p>
+                    <h3 className="font-black text-2xl">أحمد ك.</h3>
                     <div className="flex items-center gap-2 text-sm font-bold text-muted-foreground">
                       <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                      4.9 <span className="font-medium">(2.4k deliveries)</span>
+                      4.9 <span className="font-medium">(2.4k توصيلة)</span>
                     </div>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ const OrderTracking = () => {
                     <MessageSquare className="w-6 h-6" />
                   </Button>
                   <Button className="flex-1 sm:flex-none h-14 px-8 rounded-2xl font-black gap-2">
-                    <Phone className="w-5 h-5" /> Call Ahmed
+                    <Phone className="w-5 h-5" /> اتصال بأحمد
                   </Button>
                 </div>
               </Card>
@@ -107,10 +107,10 @@ const OrderTracking = () => {
             {/* Right: Status Steps */}
             <div className="space-y-8">
               <Card className="p-8 rounded-[2.5rem] border-none shadow-xl bg-white dark:bg-secondary">
-                <h3 className="text-xl font-black mb-8">Order Status</h3>
+                <h3 className="text-xl font-black mb-8">حالة الطلب</h3>
                 <div className="relative">
                   {/* Line */}
-                  <div className="absolute left-7 top-0 bottom-0 w-1 bg-muted rounded-full" />
+                  <div className="absolute right-7 top-0 bottom-0 w-1 bg-muted rounded-full" />
                   
                   <div className="space-y-12 relative">
                     {steps.map((step) => (
@@ -133,7 +133,7 @@ const OrderTracking = () => {
                               animate={{ opacity: 1, height: "auto" }}
                               className="text-xs font-medium text-primary mt-2"
                             >
-                              Chef is adding the final touches!
+                              الشيف يضع اللمسات الأخيرة!
                             </motion.p>
                           )}
                         </div>
@@ -144,12 +144,12 @@ const OrderTracking = () => {
               </Card>
 
               <Card className="p-8 rounded-[2.5rem] border-none shadow-xl bg-primary text-white">
-                <h3 className="text-xl font-black mb-4">Need Help?</h3>
+                <h3 className="text-xl font-black mb-4">تحتاج مساعدة؟</h3>
                 <p className="text-white/80 text-sm font-medium mb-6 leading-relaxed">
-                  If you have any issues with your order, our support team is available 24/7.
+                  إذا واجهت أي مشكلة في طلبك، فريق الدعم متاح على مدار الساعة.
                 </p>
                 <Button variant="secondary" className="w-full h-12 rounded-xl font-black text-primary">
-                  Chat with Support
+                  تحدث مع الدعم
                 </Button>
               </Card>
             </div>
