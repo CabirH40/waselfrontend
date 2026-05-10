@@ -7,10 +7,10 @@ import LocationPicker from "../location/LocationPicker";
 import CartDrawer from "../cart/CartDrawer";
 
 const suggestions = [
-  { name: "دبل تشيز برجر", type: "وجبة" },
-  { name: "بيتزا هت", type: "مطعم" },
-  { name: "سوشي ماستر", type: "مطعم" },
-  { name: "تاكو حار", type: "وجبة" },
+  { name: "شاورما دمشقية", type: "وجبة" },
+  { name: "مطعم نارنج", type: "مطعم" },
+  { name: "بيتزا كواترو", type: "مطعم" },
+  { name: "فتة بالسمنة", type: "وجبة" },
 ];
 
 const Navbar = () => {
@@ -18,7 +18,7 @@ const Navbar = () => {
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentLocation, setCurrentLocation] = useState("شارع الملك فهد، الرياض");
+  const [currentLocation, setCurrentLocation] = useState("دمشق، حي المزة");
 
   return (
     <>

@@ -17,7 +17,7 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
 
   const handleConfirm = () => {
     showSuccess("تم حفظ العنوان بنجاح!");
-    onSelect("حي الملقا، شارع أنس بن مالك");
+    onSelect("دمشق، حي المزة، أوتوستراد");
     onClose();
   };
 
@@ -38,7 +38,7 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
           >
             {/* Header */}
             <div className="p-6 border-b flex items-center justify-between">
-              <h2 className="text-2xl font-black">تحديد موقع التوصيل</h2>
+              <h2 className="text-2xl font-black">تحديد موقع التوصيل في سوريا</h2>
               <Button variant="ghost" size="icon" onClick={onClose} className="rounded-full">
                 <X className="w-6 h-6" />
               </Button>
@@ -47,11 +47,11 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
             <div className="flex-1 overflow-y-auto">
               {step === 'map' ? (
                 <div className="relative h-[400px] md:h-[500px]">
-                  {/* Simulated Map */}
+                  {/* Simulated Map of Damascus */}
                   <img 
                     src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=80" 
-                    className="w-full h-full object-cover opacity-80"
-                    alt="Map"
+                    className="w-full h-full object-cover opacity-80 grayscale"
+                    alt="Damascus Map"
                   />
                   
                   {/* Zone Overlay */}
@@ -80,7 +80,7 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
                       <Search className="w-5 h-5 text-muted-foreground mr-2" />
                       <input 
                         type="text" 
-                        placeholder="ابحث عن منطقة أو شارع..." 
+                        placeholder="ابحث عن حي (المزة، أبو رمانة، القصاع)..." 
                         className="flex-1 bg-transparent outline-none font-bold text-sm"
                       />
                       <Button size="sm" variant="secondary" className="rounded-xl gap-2">
@@ -97,8 +97,8 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
                           <Check className="w-6 h-6" />
                         </div>
                         <div>
-                          <p className="text-xs font-black opacity-80">المنطقة مدعومة</p>
-                          <p className="font-black">توصيل سريع خلال 25 دقيقة</p>
+                          <p className="text-xs font-black opacity-80">دمشق مدعومة بالكامل</p>
+                          <p className="font-black">توصيل سريع للمزة والمالكي</p>
                         </div>
                       </div>
                     </div>
@@ -133,7 +133,7 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
                   <div className="space-y-4">
                     <label className="text-sm font-black text-muted-foreground uppercase tracking-widest">تفاصيل إضافية</label>
                     <textarea 
-                      placeholder="رقم الشقة، الطابق، أو علامة مميزة..."
+                      placeholder="رقم البناية، الطابق، أو علامة مميزة في الحي..."
                       className="w-full p-6 rounded-3xl bg-secondary/50 border-none outline-none font-bold min-h-[120px] resize-none"
                     />
                   </div>
@@ -148,7 +148,7 @@ const LocationPicker = ({ isOpen, onClose, onSelect }: LocationPickerProps) => {
                   onClick={() => setStep('details')}
                   className="w-full btn-primary-gradient h-16 rounded-2xl text-xl font-black"
                 >
-                  تأكيد الموقع
+                  تأكيد الموقع في دمشق
                 </Button>
               ) : (
                 <div className="flex gap-4">
