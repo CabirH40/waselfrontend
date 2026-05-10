@@ -1,114 +1,117 @@
+import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, CreditCard, Clock, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { MapPin, CreditCard, Clock, ChevronRight, ShieldCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { showSuccess, showLoading } from "@/utils/toast";
+import { motion } from "framer-motion";
 
 const Checkout = () => {
+  const navigate = useNavigate();
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+
+  const handlePlaceOrder = () => {
+    setIsPlacingOrder(true);
+    const toastId = showLoading("Processing your order...");
+    
+    setTimeout(() => {
+      setIsPlacingOrder(false);
+      showSuccess("Order placed successfully!");
+      navigate("/track-order/FD-9821");
+    }, 2000);
+  };
+
   return (
-    <div className="min-h-screen bg-[#FAFAFA]">
+    <div className="min-h-screen bg-[#FAFAFA] dark:bg-background">
       <Navbar />
       
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+      <main className="container mx-auto px-4 py-12">
+        <h1 className="text-4xl font-black mb-10 tracking-tight">Checkout</h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column: Details */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Delivery Address */}
-            <Card className="p-6 rounded-2xl border-none shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <h2 className="text-xl font-bold">Delivery Address</h2>
-                </div>
-                <Button variant="ghost" className="text-primary font-bold">Change</Button>
-              </div>
-              <div className="pl-13">
-                <p className="font-medium">Home</p>
-                <p className="text-muted-foreground">123 Main Street, Apartment 4B, New York, NY 10001</p>
-                <p className="text-sm text-muted-foreground mt-2">Note: Ring the bell twice</p>
-              </div>
-            </Card>
-
-            {/* Payment Method */}
-            <Card className="p-6 rounded-2xl border-none shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                    <CreditCard className="w-5 h-5" />
-                  </div>
-                  <h2 className="text-xl font-bold">Payment Method</h2>
-                </div>
-                <Button variant="ghost" className="text-primary font-bold">Change</Button>
-              </div>
-              <div className="pl-13 flex items-center gap-3">
-                <div className="bg-secondary px-3 py-1 rounded-md font-bold text-xs">VISA</div>
-                <p className="font-medium">•••• •••• •••• 4242</p>
-              </div>
-            </Card>
-
-            {/* Delivery Time */}
-            <Card className="p-6 rounded-2xl border-none shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <h2 className="text-xl font-bold">Delivery Time</h2>
-              </div>
-              <div className="pl-13">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div className="lg:col-span-2 space-y-8">
+            <Card className="p-8 rounded-[2.5rem] border-none shadow-xl bg-white dark:bg-secondary">
+              <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-4">
-                  <Button variant="outline" className="rounded-xl border-primary text-primary bg-primary/5">ASAP (25-35 min)</Button>
-                  <Button variant="outline" className="rounded-xl">Schedule for later</Button>
+                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <h2 className="text-2xl font-black">Delivery Address</h2>
                 </div>
+                <Button variant="ghost" className="text-primary font-black hover:bg-primary/5">Change</Button>
+              </div>
+              <div className="pl-16">
+                <p className="font-bold text-lg">Home</p>
+                <p className="text-muted-foreground font-medium">123 Main Street, Apartment 4B, New York, NY 10001</p>
               </div>
             </Card>
+
+            <Card className="p-8 rounded-[2.5rem] border-none shadow-xl bg-white dark:bg-secondary">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <CreditCard className="w-6 h-6" />
+                  </div>
+                  <h2 className="text-2xl font-black">Payment Method</h2>
+                </div>
+                <Button variant="ghost" className="text-primary font-black hover:bg-primary/5">Change</Button>
+              </div>
+              <div className="pl-16 flex items-center gap-4">
+                <div className="bg-black text-white px-4 py-2 rounded-xl font-black text-xs tracking-widest">VISA</div>
+                <p className="font-bold text-lg">•••• •••• •••• 4242</p>
+              </div>
+            </Card>
+
+            <div className="flex items-center gap-3 p-6 bg-green-50 dark:bg-green-900/20 rounded-3xl border border-green-100 dark:border-green-900/30">
+              <ShieldCheck className="text-green-600 w-6 h-6" />
+              <p className="text-sm font-bold text-green-800 dark:text-green-400">Your payment is secure and encrypted.</p>
+            </div>
           </div>
 
-          {/* Right Column: Summary */}
           <div className="lg:col-span-1">
-            <Card className="p-6 rounded-2xl border-none shadow-lg sticky top-24">
-              <h2 className="text-xl font-bold mb-6">Order Summary</h2>
+            <Card className="p-8 rounded-[2.5rem] border-none shadow-2xl bg-white dark:bg-secondary sticky top-24">
+              <h2 className="text-2xl font-black mb-8">Order Summary</h2>
               
-              <div className="space-y-4 mb-6">
-                <div className="flex justify-between text-sm">
+              <div className="space-y-5 mb-8">
+                <div className="flex justify-between font-bold">
                   <span className="text-muted-foreground">1x Double Cheeseburger</span>
                   <span>$12.99</span>
                 </div>
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between font-bold">
                   <span className="text-muted-foreground">1x Large French Fries</span>
                   <span>$4.99</span>
                 </div>
-                <div className="border-t pt-4 space-y-2">
-                  <div className="flex justify-between text-sm">
+                <div className="border-t border-dashed pt-6 space-y-3">
+                  <div className="flex justify-between font-bold text-sm">
                     <span className="text-muted-foreground">Subtotal</span>
                     <span>$17.98</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between font-bold text-sm">
                     <span className="text-muted-foreground">Delivery Fee</span>
-                    <span className="text-green-600 font-medium">Free</span>
+                    <span className="text-green-600">Free</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between font-bold text-sm">
                     <span className="text-muted-foreground">Service Fee</span>
                     <span>$1.50</span>
                   </div>
                 </div>
-                <div className="border-t pt-4 flex justify-between items-center">
-                  <span className="text-lg font-bold">Total</span>
-                  <span className="text-2xl font-bold text-primary">$19.48</span>
+                <div className="border-t pt-6 flex justify-between items-center">
+                  <span className="text-xl font-black">Total</span>
+                  <span className="text-3xl font-black text-primary">$19.48</span>
                 </div>
               </div>
 
-              <Link to="/track-order/123">
-                <Button className="w-full py-6 rounded-2xl text-lg font-bold shadow-lg shadow-primary/20">
-                  Place Order
-                </Button>
-              </Link>
+              <Button 
+                disabled={isPlacingOrder}
+                onClick={handlePlaceOrder}
+                className="btn-primary-gradient w-full py-8 rounded-[2rem] text-xl font-black shadow-2xl"
+              >
+                {isPlacingOrder ? "Processing..." : "Place Order"}
+              </Button>
               
-              <p className="text-[10px] text-center text-muted-foreground mt-4">
-                By placing your order, you agree to our Terms of Service and Privacy Policy.
+              <p className="text-[10px] text-center text-muted-foreground mt-6 font-bold uppercase tracking-widest">
+                Secure Checkout Powered by FoodieDash
               </p>
             </Card>
           </div>

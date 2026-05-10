@@ -1,10 +1,11 @@
+import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import BottomNav from "@/components/layout/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Star, Clock, Bike, Info, Plus, Heart } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { showSuccess } from "@/utils/toast";
 
 const menu = [
   {
@@ -25,12 +26,22 @@ const menu = [
 
 const RestaurantDetails = () => {
   const [activeCategory, setActiveCategory] = useState("Popular");
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent, itemName: string) => {
+    e.preventDefault();
+    showSuccess(`${itemName} added to cart!`);
+  };
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    showSuccess(isFavorite ? "Removed from favorites" : "Added to favorites!");
+  };
 
   return (
     <div className="min-h-screen pb-24">
       <Navbar />
       
-      {/* Cover Image */}
       <div className="h-72 md:h-96 relative">
         <img 
           src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&q=80" 
@@ -41,8 +52,7 @@ const RestaurantDetails = () => {
       </div>
 
       <main className="container mx-auto px-4 -mt-32 relative z-10">
-        {/* Restaurant Info Card */}
-        <div className="bg-white rounded-[2.5rem] premium-shadow p-8 md:p-12 mb-12">
+        <div className="bg-white dark:bg-secondary rounded-[2.5rem] premium-shadow p-8 md:p-12 mb-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
@@ -63,28 +73,29 @@ const RestaurantDetails = () => {
                   <Bike className="w-5 h-5 text-primary" />
                   Free delivery
                 </div>
-                <Button variant="ghost" size="sm" className="text-primary p-0 h-auto font-black hover:bg-transparent">
-                  <Info className="w-5 h-5 mr-1.5" /> More info
-                </Button>
               </div>
             </div>
             <div className="flex gap-3">
               <Button variant="outline" className="rounded-2xl h-12 px-6 font-bold border-gray-200">Group Order</Button>
-              <Button variant="outline" size="icon" className="rounded-2xl w-12 h-12 border-gray-200 text-primary">
-                <Heart className="w-5 h-5" />
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={toggleFavorite}
+                className={`rounded-2xl w-12 h-12 border-gray-200 transition-all ${isFavorite ? 'bg-primary/10 border-primary text-primary' : ''}`}
+              >
+                <Heart className={`w-5 h-5 ${isFavorite ? 'fill-primary' : ''}`} />
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Menu Navigation */}
-        <div className="sticky top-20 z-40 bg-[#FDFDFD]/80 backdrop-blur-md py-6 -mx-4 px-4 overflow-x-auto no-scrollbar flex gap-3">
+        <div className="sticky top-20 z-40 bg-background/80 backdrop-blur-md py-6 -mx-4 px-4 overflow-x-auto no-scrollbar flex gap-3">
           {menu.map(cat => (
             <Button 
               key={cat.category}
               variant={activeCategory === cat.category ? "default" : "outline"}
               className={`rounded-2xl px-8 h-12 font-bold transition-all ${
-                activeCategory === cat.category ? "btn-primary-gradient border-none" : "bg-white border-gray-200"
+                activeCategory === cat.category ? "btn-primary-gradient border-none" : "bg-white dark:bg-muted border-gray-200"
               }`}
               onClick={() => setActiveCategory(cat.category)}
             >
@@ -93,7 +104,6 @@ const RestaurantDetails = () => {
           ))}
         </div>
 
-        {/* Menu Items */}
         <div className="space-y-16 mt-10">
           {menu.map(section => (
             <div key={section.category} id={section.category}>
@@ -103,7 +113,7 @@ const RestaurantDetails = () => {
                   <Link key={item.id} to={`/meal/${item.id}`}>
                     <motion.div 
                       whileHover={{ y: -5 }}
-                      className="bg-white p-5 rounded-[2rem] premium-shadow border border-gray-50 flex gap-6 cursor-pointer group"
+                      className="bg-white dark:bg-secondary p-5 rounded-[2rem] premium-shadow border border-gray-50 dark:border-gray-800 flex gap-6 cursor-pointer group"
                     >
                       <div className="flex-1">
                         <h3 className="font-black text-xl mb-2 group-hover:text-primary transition-colors">{item.name}</h3>
@@ -112,7 +122,11 @@ const RestaurantDetails = () => {
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="font-black text-2xl text-foreground">${item.price}</span>
-                          <Button size="icon" className="btn-primary-gradient rounded-2xl w-11 h-11">
+                          <Button 
+                            size="icon" 
+                            className="btn-primary-gradient rounded-2xl w-11 h-11"
+                            onClick={(e) => handleAddToCart(e, item.name)}
+                          >
                             <Plus className="w-6 h-6" />
                           </Button>
                         </div>
