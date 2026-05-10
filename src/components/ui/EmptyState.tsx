@@ -10,26 +10,25 @@ interface EmptyStateProps {
   onAction?: () => void;
 }
 
-export const EmptyState = ({ icon: Icon, title, description, actionLabel, onAction }: EmptyStateProps) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    className="flex flex-col items-center text-center max-w-md mx-auto p-8"
-  >
-    <div className="w-32 h-32 bg-secondary rounded-[3rem] flex items-center justify-center mb-8 text-muted-foreground/30">
-      <Icon size={64} strokeWidth={1.5} />
-    </div>
-    <h3 className="text-3xl font-black mb-4 tracking-tight">{title}</h3>
-    <p className="text-muted-foreground font-medium leading-relaxed mb-10">
-      {description}
-    </p>
-    {actionLabel && (
-      <Button 
-        onClick={onAction}
-        className="btn-primary-gradient h-14 px-10 rounded-2xl font-black text-lg"
-      >
-        {actionLabel}
-      </Button>
-    )}
-  </motion.div>
-);
+export const EmptyState = ({ icon: Icon, title, description, actionLabel, onAction }: EmptyStateProps) => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="flex flex-col items-center text-center p-12 bg-white dark:bg-secondary rounded-[3rem] shadow-xl max-w-lg mx-auto"
+    >
+      <div className="w-24 h-24 bg-primary/10 rounded-[2rem] flex items-center justify-center text-primary mb-8">
+        <Icon className="w-12 h-12" />
+      </div>
+      <h3 className="text-2xl font-black mb-4">{title}</h3>
+      <p className="text-muted-foreground font-medium mb-8 leading-relaxed">
+        {description}
+      </p>
+      {actionLabel && (
+        <Button onClick={onAction} className="btn-primary-gradient rounded-2xl px-8 h-14 font-black text-lg">
+          {actionLabel}
+        </Button>
+      )}
+    </motion.div>
+  );
+};
