@@ -9,6 +9,8 @@ import Checkout from "./pages/Checkout";
 import OrderTracking from "./pages/OrderTracking";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
+import RestaurantDashboard from "./pages/RestaurantDashboard";
+import CourierDashboard from "./pages/CourierDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/track-order/:id" element={<OrderTracking />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard/restaurant" element={<RestaurantDashboard />} />
+          <Route path="/dashboard/courier" element={<CourierDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
