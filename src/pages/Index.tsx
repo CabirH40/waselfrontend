@@ -166,6 +166,28 @@ const Index = () => {
               </div>
             </section>
 
+            {/* Special Offers Banner */}
+            <section className="mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-[2.5rem] p-10 text-white relative overflow-hidden group cursor-pointer">
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-black mb-4">وجبات العائلة</h3>
+                    <p className="text-white/80 font-bold mb-6">خصم يصل إلى 40% على الطلبات الكبيرة</p>
+                    <Button variant="secondary" className="rounded-xl font-black text-orange-600">اطلب الآن</Button>
+                  </div>
+                  <Tag className="absolute -bottom-4 -left-4 w-32 h-32 text-white/10 -rotate-12 group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2.5rem] p-10 text-white relative overflow-hidden group cursor-pointer">
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-black mb-4">توصيل مجاني</h3>
+                    <p className="text-white/80 font-bold mb-6">لأول 3 طلبات لك عبر التطبيق</p>
+                    <Button variant="secondary" className="rounded-xl font-black text-blue-600">استخدم العرض</Button>
+                  </div>
+                  <Bike className="absolute -bottom-4 -left-4 w-32 h-32 text-white/10 -rotate-12 group-hover:scale-110 transition-transform" />
+                </div>
+              </div>
+            </section>
+
             {/* Popular Restaurants */}
             <section>
               <div className="flex items-center justify-between mb-10">

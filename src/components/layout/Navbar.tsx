@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LocationPicker from "../location/LocationPicker";
+import CartDrawer from "../cart/CartDrawer";
 
 const suggestions = [
   { name: "دبل تشيز برجر", type: "وجبة" },
@@ -15,6 +16,7 @@ const suggestions = [
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLocationOpen, setIsLocationOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentLocation, setCurrentLocation] = useState("شارع الملك فهد، الرياض");
 
@@ -56,15 +58,16 @@ const Navbar = () => {
                 <User className="w-5 h-5 text-foreground" />
               </Button>
             </Link>
-            <Link to="/checkout">
-              <Button className="btn-primary-gradient rounded-2xl gap-2 px-6 h-11">
-                <div className="relative">
-                  <ShoppingCart className="w-4 h-4" />
-                  <span className="absolute -top-2 -left-2 bg-white text-primary text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full shadow-sm">2</span>
-                </div>
-                <span className="hidden sm:inline font-bold">السلة</span>
-              </Button>
-            </Link>
+            <Button 
+              onClick={() => setIsCartOpen(true)}
+              className="btn-primary-gradient rounded-2xl gap-2 px-6 h-11"
+            >
+              <div className="relative">
+                <ShoppingCart className="w-4 h-4" />
+                <span className="absolute -top-2 -left-2 bg-white text-primary text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full shadow-sm">2</span>
+              </div>
+              <span className="hidden sm:inline font-bold">السلة</span>
+            </Button>
           </div>
         </div>
       </nav>
@@ -73,6 +76,11 @@ const Navbar = () => {
         isOpen={isLocationOpen} 
         onClose={() => setIsLocationOpen(false)} 
         onSelect={setCurrentLocation}
+      />
+
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
       />
 
       <AnimatePresence>
