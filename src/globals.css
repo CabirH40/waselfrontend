@@ -6,65 +6,74 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
-
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-
-    /* اللون الأحمر الاحترافي (Vibrant Food Red) */
     --primary: 0 84% 55%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 0% 96%;
+    --secondary: 210 40% 96.1%;
     --secondary-foreground: 222 47% 11%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 0 84% 96%;
     --accent-foreground: 0 84% 55%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 0 84% 55%;
-
     --radius: 1.25rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 0 84% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 0 84% 55%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
   body {
-    @apply bg-[#FDFDFD] text-foreground antialiased;
-    font-feature-settings: "cv11", "ss01", "ss03";
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
   }
 }
 
 @layer components {
   .premium-shadow {
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
   }
   
-  .premium-card {
-    @apply bg-white border border-gray-100/50 premium-shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 active:scale-[0.98];
+  }
+
+  .skeleton-pulse {
+    @apply animate-pulse bg-muted rounded-2xl;
   }
 
   .btn-primary-gradient {
-    @apply bg-gradient-to-r from-[#FF3838] to-[#FF5E3A] text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all active:scale-95;
+    @apply bg-gradient-to-br from-[#FF3838] to-[#FF5E3A] text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40 transition-all active:scale-95;
   }
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
