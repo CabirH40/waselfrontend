@@ -1,9 +1,10 @@
 import Navbar from "@/components/layout/Navbar";
 import BottomNav from "@/components/layout/BottomNav";
 import { Button } from "@/components/ui/button";
-import { Star, Clock, Bike, Info, Plus, Minus } from "lucide-react";
+import { Star, Clock, Bike, Info, Plus, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const menu = [
   {
@@ -26,57 +27,65 @@ const RestaurantDetails = () => {
   const [activeCategory, setActiveCategory] = useState("Popular");
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-24">
       <Navbar />
       
       {/* Cover Image */}
-      <div className="h-64 md:h-80 relative">
+      <div className="h-72 md:h-96 relative">
         <img 
           src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&q=80" 
           alt="Restaurant" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
       </div>
 
-      <main className="container mx-auto px-4 -mt-20 relative z-10">
+      <main className="container mx-auto px-4 -mt-32 relative z-10">
         {/* Restaurant Info Card */}
-        <div className="bg-white rounded-3xl shadow-xl p-6 md:p-8 mb-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white rounded-[2.5rem] premium-shadow p-8 md:p-12 mb-12">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Burger King</h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-1 text-foreground font-bold">
-                  <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                  4.5 (500+ ratings)
+              <div className="flex items-center gap-3 mb-4">
+                <h1 className="text-4xl md:text-5xl font-black tracking-tight">Burger King</h1>
+                <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black">OPEN</div>
+              </div>
+              <div className="flex flex-wrap items-center gap-6 text-sm font-bold text-muted-foreground">
+                <div className="flex items-center gap-2 text-foreground">
+                  <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                  <span className="text-lg">4.5</span>
+                  <span className="text-muted-foreground font-medium">(500+ reviews)</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-primary" />
                   20-30 min
                 </div>
-                <div className="flex items-center gap-1">
-                  <Bike className="w-4 h-4" />
+                <div className="flex items-center gap-2">
+                  <Bike className="w-5 h-5 text-primary" />
                   Free delivery
                 </div>
-                <Button variant="ghost" size="sm" className="text-primary p-0 h-auto font-bold">
-                  <Info className="w-4 h-4 mr-1" /> More info
+                <Button variant="ghost" size="sm" className="text-primary p-0 h-auto font-black hover:bg-transparent">
+                  <Info className="w-5 h-5 mr-1.5" /> More info
                 </Button>
               </div>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" className="rounded-full">Group Order</Button>
-              <Button className="rounded-full">Favorite</Button>
+            <div className="flex gap-3">
+              <Button variant="outline" className="rounded-2xl h-12 px-6 font-bold border-gray-200">Group Order</Button>
+              <Button variant="outline" size="icon" className="rounded-2xl w-12 h-12 border-gray-200 text-primary">
+                <Heart className="w-5 h-5" />
+              </Button>
             </div>
           </div>
         </div>
 
         {/* Menu Navigation */}
-        <div className="sticky top-16 z-40 bg-[#FAFAFA] py-4 -mx-4 px-4 overflow-x-auto no-scrollbar flex gap-2">
+        <div className="sticky top-20 z-40 bg-[#FDFDFD]/80 backdrop-blur-md py-6 -mx-4 px-4 overflow-x-auto no-scrollbar flex gap-3">
           {menu.map(cat => (
             <Button 
               key={cat.category}
               variant={activeCategory === cat.category ? "default" : "outline"}
-              className="rounded-full whitespace-nowrap"
+              className={`rounded-2xl px-8 h-12 font-bold transition-all ${
+                activeCategory === cat.category ? "btn-primary-gradient border-none" : "bg-white border-gray-200"
+              }`}
               onClick={() => setActiveCategory(cat.category)}
             >
               {cat.category}
@@ -85,33 +94,34 @@ const RestaurantDetails = () => {
         </div>
 
         {/* Menu Items */}
-        <div className="space-y-12 mt-8">
+        <div className="space-y-16 mt-10">
           {menu.map(section => (
             <div key={section.category} id={section.category}>
-              <h2 className="text-2xl font-bold mb-6">{section.category}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h2 className="text-3xl font-black mb-8 tracking-tight">{section.category}</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {section.items.map(item => (
-                  <motion.div 
-                    key={item.id}
-                    whileHover={{ y: -4 }}
-                    className="bg-white p-4 rounded-2xl shadow-sm border flex gap-4 cursor-pointer"
-                  >
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg mb-1">{item.name}</h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                        {item.desc}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold text-primary">${item.price}</span>
-                        <Button size="sm" className="rounded-full w-8 h-8 p-0">
-                          <Plus className="w-4 h-4" />
-                        </Button>
+                  <Link key={item.id} to={`/meal/${item.id}`}>
+                    <motion.div 
+                      whileHover={{ y: -5 }}
+                      className="bg-white p-5 rounded-[2rem] premium-shadow border border-gray-50 flex gap-6 cursor-pointer group"
+                    >
+                      <div className="flex-1">
+                        <h3 className="font-black text-xl mb-2 group-hover:text-primary transition-colors">{item.name}</h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2 mb-4 font-medium leading-relaxed">
+                          {item.desc}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="font-black text-2xl text-foreground">${item.price}</span>
+                          <Button size="icon" className="btn-primary-gradient rounded-2xl w-11 h-11">
+                            <Plus className="w-6 h-6" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden flex-shrink-0">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                    </div>
-                  </motion.div>
+                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-3xl overflow-hidden flex-shrink-0 shadow-inner">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      </div>
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </div>

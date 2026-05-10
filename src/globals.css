@@ -5,35 +5,35 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
+    --popover-foreground: 222 47% 11%;
 
-    /* لون برتقالي محمر جذاب للطعام */
-    --primary: 14 100% 57%;
+    /* اللون الأحمر الاحترافي (Vibrant Food Red) */
+    --primary: 0 84% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 100% 97%;
-    --secondary-foreground: 24 9.8% 10%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 20 10% 96.1%;
-    --muted-foreground: 25 5.3% 44.7%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 14 100% 96%;
-    --accent-foreground: 14 100% 57%;
+    --accent: 0 84% 96%;
+    --accent-foreground: 0 84% 55%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 14 100% 57%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 0 84% 55%;
 
-    --radius: 1rem;
+    --radius: 1.25rem;
   }
 }
 
@@ -42,13 +42,23 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#FAFAFA] text-foreground antialiased;
-    font-feature-settings: "cv11", "ss01";
+    @apply bg-[#FDFDFD] text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01", "ss03";
   }
 }
 
-.glass-morphism {
-  @apply bg-white/80 backdrop-blur-md border-white/20;
+@layer components {
+  .premium-shadow {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .premium-card {
+    @apply bg-white border border-gray-100/50 premium-shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .btn-primary-gradient {
+    @apply bg-gradient-to-r from-[#FF3838] to-[#FF5E3A] text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all active:scale-95;
+  }
 }
 
 .no-scrollbar::-webkit-scrollbar {
