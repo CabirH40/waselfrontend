@@ -53,7 +53,7 @@
   * { @apply border-border; }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Cairo', sans-serif;
   }
 }
 
@@ -64,10 +64,6 @@
   
   .card-hover {
     @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 active:scale-[0.98];
-  }
-
-  .skeleton-pulse {
-    @apply animate-pulse bg-muted rounded-2xl;
   }
 
   .btn-primary-gradient {

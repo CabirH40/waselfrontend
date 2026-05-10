@@ -6,10 +6,10 @@ const BottomNav = () => {
   const location = useLocation();
   
   const navItems = [
-    { icon: Home, label: "Home", path: "/" },
-    { icon: Search, label: "Search", path: "/search" },
-    { icon: ReceiptText, label: "Orders", path: "/profile" },
-    { icon: User, label: "Profile", path: "/auth" },
+    { icon: Home, label: "الرئيسية", path: "/" },
+    { icon: Search, label: "البحث", path: "/search" },
+    { icon: ReceiptText, label: "طلباتي", path: "/profile" },
+    { icon: User, label: "حسابي", path: "/auth" },
   ];
 
   return (
