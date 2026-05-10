@@ -24,12 +24,12 @@ const Navbar = () => {
     <>
       <nav className="sticky top-0 z-50 w-full border-b bg-white/90 backdrop-blur-xl">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-6">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-11 h-11 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
-              <ShoppingCart className="text-white w-6 h-6" />
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
+              <img src="/src/assets/logo.png" alt="Wasel-2u Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-2xl font-black tracking-tighter text-primary hidden sm:block">
-              فودي<span className="text-foreground">داش</span>
+              Wasel<span className="text-foreground">-2u</span>
             </span>
           </Link>
 

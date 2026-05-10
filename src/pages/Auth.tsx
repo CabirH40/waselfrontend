@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Github, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Auth = () => {
@@ -11,12 +11,12 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center">
-              <ShoppingCart className="text-white w-7 h-7" />
+          <Link to="/" className="inline-flex items-center gap-3 mb-6">
+            <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-xl">
+              <img src="/src/assets/logo.png" alt="Wasel-2u Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="text-3xl font-bold tracking-tight text-primary">
-              فودي داش
+            <span className="text-3xl font-black tracking-tight text-primary">
+              Wasel-2u
             </span>
           </Link>
           <h1 className="text-2xl font-black">مرحباً بك مجدداً!</h1>
