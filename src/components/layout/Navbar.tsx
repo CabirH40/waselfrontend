@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Search, ShoppingCart, User, MapPin, X, Flame } from "lucide-react";
+import { Search, ShoppingCart, User, MapPin, X, Flame, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import LocationPicker from "../location/LocationPicker";
 
 const suggestions = [
   { name: "دبل تشيز برجر", type: "وجبة" },
@@ -13,7 +14,9 @@ const suggestions = [
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentLocation, setCurrentLocation] = useState("شارع الملك فهد، الرياض");
 
   return (
     <>
@@ -28,9 +31,13 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-3 text-sm font-semibold text-muted-foreground bg-secondary/50 border border-gray-100 px-5 py-2.5 rounded-2xl cursor-pointer hover:bg-accent/50 transition-all">
-            <MapPin className="w-4 h-4 text-primary" />
-            <span>التوصيل إلى: <span className="text-foreground">شارع الملك فهد، الرياض</span></span>
+          <div 
+            onClick={() => setIsLocationOpen(true)}
+            className="hidden lg:flex items-center gap-3 text-sm font-semibold text-muted-foreground bg-secondary/50 border border-gray-100 px-5 py-2.5 rounded-2xl cursor-pointer hover:bg-accent/50 transition-all group"
+          >
+            <MapPin className="w-4 h-4 text-primary group-hover:animate-bounce" />
+            <span>التوصيل إلى: <span className="text-foreground font-black">{currentLocation}</span></span>
+            <ChevronDown className="w-4 h-4" />
           </div>
 
           <div className="flex-1 max-w-lg relative hidden md:block">
@@ -61,6 +68,12 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      <LocationPicker 
+        isOpen={isLocationOpen} 
+        onClose={() => setIsLocationOpen(false)} 
+        onSelect={setCurrentLocation}
+      />
 
       <AnimatePresence>
         {isSearchOpen && (
