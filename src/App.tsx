@@ -9,6 +9,7 @@ import Checkout from "./pages/Checkout";
 import OrderTracking from "./pages/OrderTracking";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 import RestaurantDashboard from "./pages/RestaurantDashboard";
 import CourierDashboard from "./pages/CourierDashboard";
 import NotFound from "./pages/NotFound";
@@ -22,6 +23,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/restaurant/:id" element={<RestaurantDetails />} />
           <Route path="/meal/:id" element={<MealDetails />} />
           <Route path="/checkout" element={<Checkout />} />
