@@ -2,10 +2,9 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, CreditCard, Clock, ChevronRight, ShieldCheck } from "lucide-react";
+import { MapPin, CreditCard, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { showSuccess, showLoading } from "@/utils/toast";
-import { motion } from "framer-motion";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -65,7 +64,7 @@ const Checkout = () => {
 
             <div className="flex items-center gap-3 p-6 bg-green-50 dark:bg-green-900/20 rounded-3xl border border-green-100 dark:border-green-900/30">
               <ShieldCheck className="text-green-600 w-6 h-6" />
-              <p className="text-sm font-bold text-green-800 dark:text-green-400">طلبك مؤمن ومدعوم من فريق فودي داش سوريا.</p>
+              <p className="text-sm font-bold text-green-800 dark:text-green-400">طلبك مؤمن ومدعوم من فريق Wasel-2u سوريا.</p>
             </div>
           </div>
 
@@ -105,7 +104,7 @@ const Checkout = () => {
               >
                 {isPlacingOrder ? "جاري المعالجة..." : "تأكيد الطلب"}
               </Button>
-            </div>
+            </Card>
           </div>
         </div>
       </main>
