@@ -1,5 +1,6 @@
 import { LucideIcon } from "lucide-react";
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 interface EmptyStateProps {
   icon: LucideIcon;
@@ -10,16 +11,25 @@ interface EmptyStateProps {
 }
 
 export const EmptyState = ({ icon: Icon, title, description, actionLabel, onAction }: EmptyStateProps) => (
-  <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-    <div className="w-24 h-24 bg-secondary rounded-[2.5rem] flex items-center justify-center mb-6">
-      <Icon className="w-12 h-12 text-muted-foreground" />
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="flex flex-col items-center text-center max-w-md mx-auto p-8"
+  >
+    <div className="w-32 h-32 bg-secondary rounded-[3rem] flex items-center justify-center mb-8 text-muted-foreground/30">
+      <Icon size={64} strokeWidth={1.5} />
     </div>
-    <h3 className="text-2xl font-black mb-2">{title}</h3>
-    <p className="text-muted-foreground max-w-xs mb-8 font-medium">{description}</p>
+    <h3 className="text-3xl font-black mb-4 tracking-tight">{title}</h3>
+    <p className="text-muted-foreground font-medium leading-relaxed mb-10">
+      {description}
+    </p>
     {actionLabel && (
-      <Button onClick={onAction} className="btn-primary-gradient rounded-2xl px-8 h-12 font-bold">
+      <Button 
+        onClick={onAction}
+        className="btn-primary-gradient h-14 px-10 rounded-2xl font-black text-lg"
+      >
         {actionLabel}
       </Button>
     )}
-  </div>
+  </motion.div>
 );
